@@ -4,11 +4,13 @@ class CFWorkouts::Day
 
     @@all = []
 
-    
+    def initialize(name, url)
+        @name = name
+        @url = url
+        @@all << self
+    end
+    def self.all
+        @@all
+    end
 
-    
 end
-
-# What do I want Day to do?
-# 1. Inititialize with a name, a url, and a workout
-# 2. Has many 

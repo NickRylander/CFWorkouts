@@ -1,5 +1,5 @@
 class CFWorkouts::CLI 
     def run
-        puts "Am I working?"
+        CFWorkouts::Day.new
     end
 end
