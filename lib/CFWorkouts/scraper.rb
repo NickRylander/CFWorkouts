@@ -1,3 +1,3 @@
-class Scraper
-
+class CFWorkouts::Scraper 
+    
 end

@@ -1,3 +1,3 @@
-module CFWorkouts
-  VERSION = "0.1.0"
+module WorldsBestRestaurants
+    VERSION = "1.0.0"
 end

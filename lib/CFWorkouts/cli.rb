@@ -1,3 +1,3 @@
-class CLI
-
+class CFWorkouts::CLI 
+    puts "hi"
 end
