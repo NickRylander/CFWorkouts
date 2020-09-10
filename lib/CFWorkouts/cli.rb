@@ -1,3 +1,5 @@
 class CFWorkouts::CLI 
-    puts "hi"
+    def run
+        puts "Am I working?"
+    end
 end
