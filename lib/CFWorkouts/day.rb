@@ -5,8 +5,8 @@ class CFWorkouts::Day
     @@all = []
 
     def initialize(name, url)
-        @name = name
-        @url = url
+        self.name = name
+        self.url = url
         @@all << self
     end
     def self.all

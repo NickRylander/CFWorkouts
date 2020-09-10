@@ -1,5 +1,5 @@
 class CFWorkouts::CLI 
     def run
-        CFWorkouts::Scraper.scrape_days(month)
+        CFWorkouts::Scraper.scrape_days
     end
 end

@@ -5,8 +5,8 @@ class CFWorkouts::Month
     @@all = []
 
     def initialize(month_name, month_number)
-        @month_name = month_name
-        @month_number = month_number
+        self.month_name = month_name
+        self.month_number = month_number
         @@all << self
     end
     def self.all

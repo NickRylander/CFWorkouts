@@ -5,15 +5,15 @@ class CFWorkouts::Scraper
 
     def self.scrape_months
         doc = Nokogiri::HTML(open(MONTH_URL))
-        month_selector = doc.css("select#monthFilter.form-control.input-sm").text.strip.split("\n                ").slice(1, 13).each do |months|
+        doc.css("select#monthFilter.form-control.input-sm").text.strip.split("\n                ").slice(1, 13).each do |months|
             month_number, month_name = months.split(" - ")
             CFWorkouts::Month.new(month_name, month_number)
+
         end
     end
 
-    def self.scrape_days(months)
-        binding.pry
-        doc = Nokogiri::HTML(open(MONTH_URL+months.month_number))
+    def self.scrape_days
+        doc = Nokogiri::HTML(open(MONTH_URL))
         doc.css("section#archives.section").css(".show a").each do |day|
             name, url = day.text.split
             CFWorkouts::Day.new(name, url)
