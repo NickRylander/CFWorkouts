@@ -1,12 +1,12 @@
 class CFWorkouts::Day 
     
-    attr_accessor :name, :url, :month
+    attr_accessor :name, :date, :month
 
     @@all = []
 
-    def initialize(name, url)
+    def initialize(name, date)
         self.name = name
-        self.url = url
+        self.date = date
         @@all << self
     end
     def self.all

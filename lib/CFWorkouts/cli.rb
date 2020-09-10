@@ -14,20 +14,38 @@ class CFWorkouts::CLI
     end
     def month_input
         print "Pick a number: "
-        input = gets.chomp.to_i-1
+        input = gets.chomp.to_i
         case input
         when 1..CFWorkouts::Month.all.length
-            puts "You chose #{}"
+            puts "\nYou chose a great month!"
+            puts "\nNow, which day would you like to see?"
+            list_days
+            day_input
         else
             puts "Sorry, what was that?"
             month_input
         end
     end
-    def list_days
-        CFWorkouts::Day.all.each.with_index(1).each do |day, i|
-            puts "#{i}. #{day.name}"
+    def list_days(day)
+        CFWorkouts::Scraper.scrape_days(day)
+        CFWorkouts::Day.all.reverse.each.with_index(1).each do |day, i|
+            puts "#{i}. #{day.name} - #{day.date}"
         end
     end
+    # def day_input
+    #     print "Pick a number: "
+    #     input = gets.chomp.to_i
+    #     case input
+    #     when 1..CFWorkouts::Day.all.length
+    #         puts "\nYou chose a great day!"
+    #         puts "\nHere's your workout!"
+    #         puts "\nHave fun!"
+    #         workout_details
+    #     else
+    #         puts "Sorry, what was that?"
+    #         day_input
+    #     end
+    # end
     def options_menu
         puts "Want to view a different month? Type \"Months\""
         puts "Want to view a different day? Type \"Days\""

@@ -15,8 +15,8 @@ class CFWorkouts::Scraper
     def self.scrape_days
         doc = Nokogiri::HTML(open(MONTH_URL))
         doc.css("section#archives.section").css(".show a").each do |day|
-            name, url = day.text.split
-            CFWorkouts::Day.new(name, url)
+            name, date = day.text.split
+            CFWorkouts::Day.new(name, date)
         end
     end
 
