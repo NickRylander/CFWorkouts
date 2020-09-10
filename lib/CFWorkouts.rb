@@ -1,6 +1,5 @@
 require "CFWorkouts/version"
-
+require_relative '../config/environment'
 module CFWorkouts
-  class Error < StandardError; end
-  # Your code goes here...
+
 end
