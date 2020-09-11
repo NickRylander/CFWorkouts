@@ -1,8 +1,6 @@
 # CFWorkouts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/CFWorkouts`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem was specifically created to scrape the CrossFit website to view any workout of the day (WOD) within any given month in 2020. First you will select which month you would like to view. Then you will select a day within that month to get a print-out of what the workout is for that day. Now go get your sweat on and enjoy this little gem!
 
 ## Installation
 
@@ -19,10 +17,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install CFWorkouts
-
-## Usage
-
-This gem was specifically created to scrape the CrossFit website to view any workout of the day (WOD) within any given month in 2020. First you will select which month you would like to view. Then you will select a day within that month to get a print-out of what the workout is for that day. Now go get your sweat on and enjoy this little gem!
 
 ## Development
 
