@@ -79,10 +79,11 @@ class CFWorkouts::CLI
         when "months"
             puts "\nHere you go!"
             list_months
+            binding.pry
             month_input
         when "days"
             puts "\nHere you go"
-            list_days(days)
+            list_days
             day_input
         when "exit"
             puts "\nGo take a nap!"
@@ -91,5 +92,5 @@ class CFWorkouts::CLI
             puts "\nThere must have been a typo, try again!"
             options_menu
         end
-    end
+     end
 end

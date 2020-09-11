@@ -12,5 +12,4 @@ class CFWorkouts::Day
     def self.all
         @@all
     end
-
 end
