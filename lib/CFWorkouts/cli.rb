@@ -28,6 +28,7 @@ class CFWorkouts::CLI
             month_input
         end
     end
+
     def day_input
         print "\nPick a number: "
         input = gets.chomp.to_i
@@ -53,12 +54,14 @@ class CFWorkouts::CLI
             puts "#{i}. #{month.month_name}"
         end
     end
+
     def list_days(days)
         CFWorkouts::Scraper.scrape_days(days)
         CFWorkouts::Day.all.reverse.each.with_index(1).each do |day, i|
             puts "#{i}. #{day.name} - #{day.date}"
         end
     end
+
     def workout_details(workout)
         CFWorkouts::Scraper.scrape_workouts(workout)
         puts "#{workout.details}"
@@ -71,17 +74,17 @@ class CFWorkouts::CLI
         puts "Want to view a different day? Type \"Days\""
         puts "Want to exit the program? Type \"Exit\""
         input = gets.chomp.downcase
-        case input
-        when "months"
+        if input == "months"
             list_months
             month_input
-        when "days"
-            list_days
+        elsif input == "days"
+            list_days(days)
             day_input
-        when "exit"
+        elsif input == "exit"
             exit
         else
-            "There must have been a typo, try again!"
+            puts "There must have been a typo, try again!"
+            options_menu
         end
     end
 end
