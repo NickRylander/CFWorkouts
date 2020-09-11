@@ -1,6 +1,6 @@
 class CFWorkouts::Day 
     
-    attr_accessor :name, :date, :workout, :day
+    attr_accessor :name, :date, :workout, :day, :details
 
     @@all = []
 

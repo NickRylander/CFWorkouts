@@ -22,7 +22,7 @@ class CFWorkouts::Scraper
 
     def self.scrape_workouts(workout)
         doc = Nokogiri::HTML(open(DAY_URL+workout.date))
-        details = doc.css("div._6zX5t4v71r1EQ1b1O0nO2.jYZW249J9cFebTPrzuIl0").text
+        workout.details = doc.css("div._6zX5t4v71r1EQ1b1O0nO2.jYZW249J9cFebTPrzuIl0").text
     end
 
 end

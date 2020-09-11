@@ -14,15 +14,17 @@ class CFWorkouts::CLI
     # ____________________MENU____________________
 
     def options_menu
-        puts "Want to view a different month? Type \"Months\""
+        puts "\nWant to view a different month? Type \"Months\""
         puts "Want to view a different day? Type \"Days\""
         puts "Want to exit the program? Type \"Exit\""
         input = gets.chomp.downcase
         case input
         when "months"
             list_months
+            month_input
         when "days"
             list_days
+            day_input
         when "exit"
             exit
         else
@@ -36,9 +38,8 @@ class CFWorkouts::CLI
         print "Pick a number: "
         input = gets.chomp.to_i
         day = CFWorkouts::Month.all[input-1]
-        case day
+        case input
         when 1..CFWorkouts::Month.all.length
-            binding.pry
             puts "\nYou chose a great month!"
             puts "\nNow, which day would you like to see?"
             list_days(day)
@@ -53,7 +54,7 @@ class CFWorkouts::CLI
         puts "Pick a number: "
         input = gets.chomp.to_i
         workout = CFWorkouts::Day.all.reverse[input-1]
-        case workout
+        case input
         when 1..CFWorkouts::Day.all.length
             puts "\nYou chose a great day!"
             puts "\nHere is the workout. Good luck!"
@@ -80,6 +81,6 @@ class CFWorkouts::CLI
     end
     def workout_details(workout)
         CFWorkouts::Scraper.scrape_workouts(workout)
-        puts "#{workout.details}"
+        puts "\n#{workout.details}"
     end
 end
