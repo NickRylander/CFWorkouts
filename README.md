@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem was specifically created to scrape the CrossFit website to view any workout of the day (WOD) within any given month in 2020. First you will select which month you would like to view. Then you will select a day within that month to get a print-out of what the workout is for that day. Now go get your sweat on and enjoy this little gem!
 
 ## Development
 
