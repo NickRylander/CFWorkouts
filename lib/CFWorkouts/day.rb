@@ -12,4 +12,7 @@ class CFWorkouts::Day
     def self.all
         @@all
     end
+    def self.reset
+        self.all.clear
+    end
 end
