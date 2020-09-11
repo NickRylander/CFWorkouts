@@ -11,31 +11,10 @@ class CFWorkouts::CLI
         month_input
     end
 
-    # ____________________MENU____________________
-
-    def options_menu
-        puts "\nWant to view a different month? Type \"Months\""
-        puts "Want to view a different day? Type \"Days\""
-        puts "Want to exit the program? Type \"Exit\""
-        input = gets.chomp.downcase
-        case input
-        when "months"
-            list_months
-            month_input
-        when "days"
-            list_days
-            day_input
-        when "exit"
-            exit
-        else
-            "There must have been a typo, try again!"
-        end
-    end
-
     # ____________________INPUT____________________
 
     def month_input
-        print "Pick a number: "
+        print "\nPick a number: "
         input = gets.chomp.to_i
         day = CFWorkouts::Month.all[input-1]
         case input
@@ -49,16 +28,17 @@ class CFWorkouts::CLI
             month_input
         end
     end
-
     def day_input
-        puts "Pick a number: "
+        print "\nPick a number: "
         input = gets.chomp.to_i
         workout = CFWorkouts::Day.all.reverse[input-1]
         case input
         when 1..CFWorkouts::Day.all.length
             puts "\nYou chose a great day!"
             puts "\nHere is the workout. Good luck!"
+            puts "--------------------"
             workout_details(workout)
+            puts "--------------------"
             options_menu
         else
             puts "Sorry, what was that?"
@@ -81,6 +61,27 @@ class CFWorkouts::CLI
     end
     def workout_details(workout)
         CFWorkouts::Scraper.scrape_workouts(workout)
-        puts "\n#{workout.details}"
+        puts "#{workout.details}"
+    end
+
+    # ____________________MENU____________________
+
+    def options_menu
+        puts "\nWant to view a different month? Type \"Months\""
+        puts "Want to view a different day? Type \"Days\""
+        puts "Want to exit the program? Type \"Exit\""
+        input = gets.chomp.downcase
+        case input
+        when "months"
+            list_months
+            month_input
+        when "days"
+            list_days
+            day_input
+        when "exit"
+            exit
+        else
+            "There must have been a typo, try again!"
+        end
     end
 end
