@@ -18,7 +18,6 @@ class CFWorkouts::CLI
         day = CFWorkouts::Month.all[input-1]
         case input
         when 1..CFWorkouts::Month.all.length
-            puts "\nYou chose a great month!"
             puts "\nNow, which day would you like to see?"
             CFWorkouts::Day.reset
             list_days(day)
