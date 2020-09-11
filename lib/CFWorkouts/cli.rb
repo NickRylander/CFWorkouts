@@ -73,17 +73,22 @@ class CFWorkouts::CLI
         puts "\nWant to view a different month? Type \"Months\""
         puts "Want to view a different day? Type \"Days\""
         puts "Want to exit the program? Type \"Exit\""
+        print "Type here: "
         input = gets.chomp.downcase
-        if input == "months"
+        case input
+        when "months"
+            puts "\nHere you go!"
             list_months
             month_input
-        elsif input == "days"
+        when "days"
+            puts "\nHere you go"
             list_days(days)
             day_input
-        elsif input == "exit"
+        when "exit"
+            puts "\nGo take a nap!"
             exit
         else
-            puts "There must have been a typo, try again!"
+            puts "\nThere must have been a typo, try again!"
             options_menu
         end
     end
