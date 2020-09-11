@@ -12,16 +12,16 @@ class CFWorkouts::Scraper
         end
     end
 
-    def self.scrape_days
-        doc = Nokogiri::HTML(open(MONTH_URL))
+    def self.scrape_days(days)
+        doc = Nokogiri::HTML(open(MONTH_URL+days.month_number))
         doc.css("section#archives.section").css(".show a").each do |day|
             name, date = day.text.split
             CFWorkouts::Day.new(name, date)
         end
     end
 
-    def self.scrape_workouts
-        doc = Nokogiri::HTML(open(DAY_URL))
+    def self.scrape_workouts(workout)
+        doc = Nokogiri::HTML(open(DAY_URL+workout.date))
         details = doc.css("div._6zX5t4v71r1EQ1b1O0nO2.jYZW249J9cFebTPrzuIl0").text
     end
 

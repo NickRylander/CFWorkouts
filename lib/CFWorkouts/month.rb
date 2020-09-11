@@ -1,6 +1,6 @@
 class CFWorkouts::Month
 
-    attr_accessor :month_name, :month_number, :day
+    attr_accessor :month_name, :month_number
 
     @@all = []
 

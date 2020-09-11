@@ -1,4 +1,7 @@
-class CFWorkouts::CLI 
+class CFWorkouts::CLI
+    
+    # ____________________RUN____________________
+
     def run
         puts "\n__Welcome to the CrossFit WOD Selector!__"
         puts "______First, let's choose a month!_______"
@@ -7,45 +10,9 @@ class CFWorkouts::CLI
         list_months
         month_input
     end
-    def list_months
-        CFWorkouts::Month.all.each.with_index(1).each do |month, i|
-            puts "#{i}. #{month.month_name}"
-        end
-    end
-    def month_input
-        print "Pick a number: "
-        input = gets.chomp.to_i
-        case input
-        when 1..CFWorkouts::Month.all.length
-            puts "\nYou chose a great month!"
-            puts "\nNow, which day would you like to see?"
-            list_days
-            day_input
-        else
-            puts "Sorry, what was that?"
-            month_input
-        end
-    end
-    def list_days(day)
-        CFWorkouts::Scraper.scrape_days(day)
-        CFWorkouts::Day.all.reverse.each.with_index(1).each do |day, i|
-            puts "#{i}. #{day.name} - #{day.date}"
-        end
-    end
-    # def day_input
-    #     print "Pick a number: "
-    #     input = gets.chomp.to_i
-    #     case input
-    #     when 1..CFWorkouts::Day.all.length
-    #         puts "\nYou chose a great day!"
-    #         puts "\nHere's your workout!"
-    #         puts "\nHave fun!"
-    #         workout_details
-    #     else
-    #         puts "Sorry, what was that?"
-    #         day_input
-    #     end
-    # end
+
+    # ____________________MENU____________________
+
     def options_menu
         puts "Want to view a different month? Type \"Months\""
         puts "Want to view a different day? Type \"Days\""
@@ -62,21 +29,57 @@ class CFWorkouts::CLI
             "There must have been a typo, try again!"
         end
     end
-end
 
-# 1. Run the program
-#     - Welcome statement
-#     - List the months
-#     - Options menu
-# 2. Get user input to choose month
-#     - If the input is valid, return the list of days
-#         - Options menu
-#     - If the input is not valid, try again
-# 3. Get user input to choose day
-#     - If valid, return te workout
-#         - Options menu
-#     - If the input is not valid, try again
-# 4. Options menu
-#     - Would you like to see the month list again?
-#     - Would you like to see the days list again?
-#     - Would you like to exit the program?
+    # ____________________INPUT____________________
+
+    def month_input
+        print "Pick a number: "
+        input = gets.chomp.to_i
+        day = CFWorkouts::Month.all[input-1]
+        case day
+        when 1..CFWorkouts::Month.all.length
+            binding.pry
+            puts "\nYou chose a great month!"
+            puts "\nNow, which day would you like to see?"
+            list_days(day)
+            day_input
+        else
+            puts "Sorry, what was that?"
+            month_input
+        end
+    end
+
+    def day_input
+        puts "Pick a number: "
+        input = gets.chomp.to_i
+        workout = CFWorkouts::Day.all.reverse[input-1]
+        case workout
+        when 1..CFWorkouts::Day.all.length
+            puts "\nYou chose a great day!"
+            puts "\nHere is the workout. Good luck!"
+            workout_details(workout)
+            options_menu
+        else
+            puts "Sorry, what was that?"
+            day_input
+        end
+    end    
+
+    # ____________________LIST____________________
+
+    def list_months
+        CFWorkouts::Month.all.each.with_index(1).each do |month, i|
+            puts "#{i}. #{month.month_name}"
+        end
+    end
+    def list_days(days)
+        CFWorkouts::Scraper.scrape_days(days)
+        CFWorkouts::Day.all.reverse.each.with_index(1).each do |day, i|
+            puts "#{i}. #{day.name} - #{day.date}"
+        end
+    end
+    def workout_details(workout)
+        CFWorkouts::Scraper.scrape_workouts(workout)
+        puts "#{workout.details}"
+    end
+end
